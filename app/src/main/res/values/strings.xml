@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">HealthNote</string>
-    <string name="helloWorld">Hello World!\nThis is HealthNote.</string>
-    <string name="healthNoteLogo">This is the HealthNote logo.</string>
     <string name="plusString">+</string>
-    <string name="element_text3">Element Text 3</string>
+    <string name="addMedicineNamePreview">e.g. cetirizine</string>
+    <string name="addMedicineNameHint">Set the name for your new medicament you want to add.</string>
 </resources>

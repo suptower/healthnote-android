@@ -1,5 +1,6 @@
 package de.othregensburg.healthnote
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         val addButton = findViewById<Button>(R.id.add_button)
 
         addButton.setOnClickListener {
-            randomValues.add(medicament(Random.nextInt(10).toString()))
-            recyclerView.adapter = ListAdapter(randomValues)
+            val intent = Intent(this, AddMedicamentActivity::class.java)
+            startActivity(intent)
         }
     }
 
