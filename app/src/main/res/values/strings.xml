@@ -2,7 +2,6 @@
     <string name="app_name">HealthNote</string>
     <string name="plusString">+</string>
     <string name="addMedicineNamePreview">e.g. cetirizine</string>
-    <string name="addMedicineNameHint">Set the name for your new medicament you want to add.</string>
     <string name="name">Name</string>
     <string name="ibuprofen">ibuprofen</string>
     <string name="levothyroxine">levothyroxine</string>

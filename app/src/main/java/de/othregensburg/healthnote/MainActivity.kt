@@ -20,11 +20,9 @@ class MainActivity : AppCompatActivity() {
         exampleMedicaments.add(Medicament(getString(R.string.metamizole)))
         exampleMedicaments.add(Medicament(getString(R.string.ramipril)))
 
-
         if (intent.getSerializableExtra("PUT_EXTRA_MEDICAMENT") != null) {
             exampleMedicaments.add(intent.getSerializableExtra("PUT_EXTRA_MEDICAMENT") as Medicament)
         }
-
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -37,6 +35,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
 }
