@@ -6,7 +6,6 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,15 +13,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val randomValues = ArrayList<medicament>()
+        val exampleMedicaments = ArrayList<Medicament>()
+        exampleMedicaments.add(Medicament(getString(R.string.ibuprofen)))
+        exampleMedicaments.add(Medicament(getString(R.string.levothyroxine)))
+        exampleMedicaments.add(Medicament(getString(R.string.pantoprazole)))
+        exampleMedicaments.add(Medicament(getString(R.string.metamizole)))
+        exampleMedicaments.add(Medicament(getString(R.string.ramipril)))
 
-        for (i in 0..5) {
-            randomValues.add(medicament(Random.nextInt(10).toString()))
+
+        if (intent.getSerializableExtra("PUT_EXTRA_MEDICAMENT") != null) {
+            exampleMedicaments.add(intent.getSerializableExtra("PUT_EXTRA_MEDICAMENT") as Medicament)
         }
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = ListAdapter(randomValues)
+        recyclerView.adapter = ListAdapter(exampleMedicaments)
 
         val addButton = findViewById<Button>(R.id.add_button)
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ListAdapter(private val data: ArrayList<medicament>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapter(private val data: ArrayList<Medicament>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val listItem: TextView = view.findViewById(R.id.textView3)
     }
