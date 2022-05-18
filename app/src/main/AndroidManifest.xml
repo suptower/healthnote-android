@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthNote">
         <activity
+            android:name=".AddMedicamentActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
