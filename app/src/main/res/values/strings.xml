@@ -3,9 +3,4 @@
     <string name="plusString">+</string>
     <string name="addMedicineNamePreview">e.g. cetirizine</string>
     <string name="name">Name</string>
-    <string name="ibuprofen">ibuprofen</string>
-    <string name="levothyroxine">levothyroxine</string>
-    <string name="pantoprazole">pantoprazole</string>
-    <string name="metamizole">metamizole</string>
-    <string name="ramipril">ramipril</string>
 </resources>

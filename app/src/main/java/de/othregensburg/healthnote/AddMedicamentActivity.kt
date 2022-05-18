@@ -41,8 +41,6 @@ class AddMedicamentActivity : AppCompatActivity() {
         }
     }
 
-    // TODO Test adding and show on Main Activity
-
     private fun insertDataToDatabase() {
         val name = findViewById<EditText>(R.id.addMedicineName).text.toString()
         if (inputCheck(name)) {
