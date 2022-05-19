@@ -23,7 +23,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = medList[position]
-        holder.nameItem.text = currentItem.name.toString()
+        holder.nameItem.text = currentItem.name
         holder.idItem.text = currentItem.id.toString()
     }
 

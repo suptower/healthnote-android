@@ -46,9 +46,9 @@ class AddMedicamentActivity : AppCompatActivity() {
         if (inputCheck(name)) {
             val med = Medicament(0, name)
             mMedViewModel.addMed(med)
-            Toast.makeText(this, "Successfully added!",  Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Successfully added!",  Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Error when adding", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Error when adding", Toast.LENGTH_SHORT).show()
         }
     }
 
