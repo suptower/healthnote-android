@@ -4,8 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import de.othregensburg.healthnote.data.Medicament
+import de.othregensburg.healthnote.fragments.list.ListFragmentDirections
+import de.othregensburg.healthnote.model.Medicament
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
@@ -14,6 +17,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameItem: TextView = view.findViewById(R.id.medName)
         val idItem: TextView = view.findViewById(R.id.medId)
+        val rowLayout = view.findViewById<ConstraintLayout>(R.id.rowlayout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +29,11 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
         val currentItem = medList[position]
         holder.nameItem.text = currentItem.name
         holder.idItem.text = currentItem.id.toString()
+
+        holder.rowLayout.setOnClickListener {
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

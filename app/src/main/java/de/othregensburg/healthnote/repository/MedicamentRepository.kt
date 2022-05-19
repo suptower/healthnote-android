@@ -1,6 +1,8 @@
-package de.othregensburg.healthnote.data
+package de.othregensburg.healthnote.repository
 
 import androidx.lifecycle.LiveData
+import de.othregensburg.healthnote.data.MedicamentDao
+import de.othregensburg.healthnote.model.Medicament
 
 class MedicamentRepository(private val medicamentDao: MedicamentDao) {
 
@@ -8,5 +10,9 @@ class MedicamentRepository(private val medicamentDao: MedicamentDao) {
 
     suspend fun addMed(medicament: Medicament){
         medicamentDao.addMed(medicament)
+    }
+
+    suspend fun updateMed(medicament: Medicament) {
+        medicamentDao.updateMed(medicament)
     }
 }

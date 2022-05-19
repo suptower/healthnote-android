@@ -1,9 +1,12 @@
-package de.othregensburg.healthnote.data
+package de.othregensburg.healthnote.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import de.othregensburg.healthnote.data.MedicamentDatabase
+import de.othregensburg.healthnote.repository.MedicamentRepository
+import de.othregensburg.healthnote.model.Medicament
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,6 +24,12 @@ class MedicamentViewModel(application: Application): AndroidViewModel(applicatio
     fun addMed(medicament: Medicament){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addMed(medicament)
+        }
+    }
+
+    fun updateMed(medicament: Medicament) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateMed(medicament)
         }
     }
 }

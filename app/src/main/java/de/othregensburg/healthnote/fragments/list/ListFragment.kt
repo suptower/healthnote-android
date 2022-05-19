@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.othregensburg.healthnote.ListAdapter
 import de.othregensburg.healthnote.R
-import de.othregensburg.healthnote.data.MedicamentViewModel
+import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import de.othregensburg.healthnote.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {

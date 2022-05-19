@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import de.othregensburg.healthnote.R
-import de.othregensburg.healthnote.data.Medicament
-import de.othregensburg.healthnote.data.MedicamentViewModel
+import de.othregensburg.healthnote.model.Medicament
+import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import de.othregensburg.healthnote.databinding.FragmentAddBinding
 
 class AddFragment : Fragment() {
