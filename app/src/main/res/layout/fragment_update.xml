@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddMedicamentActivity">
+    tools:context=".fragments.update.UpdateFragment">
 
     <EditText
-        android:id="@+id/addMedicineName"
+        android:id="@+id/updateMedicineName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/addMedicineNamePreview"
         android:inputType="textPersonName"
@@ -20,15 +21,14 @@
         app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <TextView
-        android:id="@+id/nameTextView"
+        android:id="@+id/updateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/addMedicineName"
+        app:layout_constraintBottom_toTopOf="@+id/updateMedicineName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.716" />
 
     <Button
-        android:id="@+id/checkMarkButton"
+        android:id="@+id/updateCheckMarkButton"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="56dp"
         android:layout_height="56dp"

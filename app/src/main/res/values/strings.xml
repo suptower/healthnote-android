@@ -3,4 +3,5 @@
     <string name="plusString">+</string>
     <string name="addMedicineNamePreview">e.g. cetirizine</string>
     <string name="name">Name</string>
+    <string name="delete">Delete</string>
 </resources>
