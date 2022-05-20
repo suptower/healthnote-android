@@ -23,4 +23,8 @@ class MedicamentRepository(private val medicamentDao: MedicamentDao) {
     suspend fun deleteAllMeds() {
         medicamentDao.deleteAllMeds()
     }
+
+    suspend fun setSeq() {
+        medicamentDao.setSeq()
+    }
 }

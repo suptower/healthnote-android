@@ -42,6 +42,7 @@ class MedicamentViewModel(application: Application): AndroidViewModel(applicatio
     fun deleteAllMeds() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllMeds()
+            repository.setSeq()
         }
     }
 }

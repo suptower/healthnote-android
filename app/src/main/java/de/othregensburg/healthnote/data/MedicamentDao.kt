@@ -19,6 +19,9 @@ interface MedicamentDao {
     @Query("DELETE FROM med_table")
     suspend fun deleteAllMeds()
 
+    @Query("UPDATE sqlite_sequence SET SEQ = 0 WHERE NAME = 'med_table'")
+    suspend fun setSeq()
+
     @Query("SELECT * FROM med_table ORDER BY id")
     fun readAllData(): LiveData<List<Medicament>>
 

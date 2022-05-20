@@ -17,7 +17,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameItem: TextView = view.findViewById(R.id.medName)
         val idItem: TextView = view.findViewById(R.id.medId)
-        val rowLayout = view.findViewById<ConstraintLayout>(R.id.rowlayout)
+        val rowLayout: ConstraintLayout = view.findViewById(R.id.rowlayout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
