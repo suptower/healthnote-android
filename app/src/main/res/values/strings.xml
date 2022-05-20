@@ -2,6 +2,13 @@
     <string name="app_name">HealthNote</string>
     <string name="plusString">+</string>
     <string name="addMedicineNamePreview">e.g. cetirizine</string>
+    <string name="addMedicineFormPreview">e.g. orally</string>
+    <string name="addMedicineDosePreview">e.g. 200mg per day</string>
+    <string name="formOfAdministration">Form of administration</string>
     <string name="name">Name</string>
+    <string name="dose">Dose</string>
+    <string name="time">Time</string>
     <string name="delete">Delete</string>
+    <string name="checkmark">Checkmark</string>
+    <string name="setTime">SET TIME</string>
 </resources>

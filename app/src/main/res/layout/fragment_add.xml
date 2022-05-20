@@ -6,6 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".fragments.add.AddFragment">
 
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.237"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMedicineDose" />
+
+        <EditText
+            android:id="@+id/addMedicineDose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/addMedicineDosePreview"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.447"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMedicineForm"
+            app:layout_constraintVertical_bias="0.121" />
+
         <EditText
             android:id="@+id/addMedicineName"
             android:layout_width="wrap_content"
@@ -23,6 +51,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.135" />
 
+        <EditText
+            android:id="@+id/addMedicineForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/addMedicineFormPreview"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.447"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMedicineName"
+            app:layout_constraintVertical_bias="0.121" />
+
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
@@ -33,10 +78,37 @@
             app:layout_constraintHorizontal_bias="0.24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.716" />
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/formTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/formOfAdministration"
+            app:layout_constraintBottom_toTopOf="@+id/addMedicineForm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.334"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMedicineName"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/doseTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/dose"
+            app:layout_constraintBottom_toTopOf="@+id/addMedicineDose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.237"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMedicineForm"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/checkMarkButton"
+            android:contentDescription="@string/checkmark"
             style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -54,5 +126,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.903" />
 
+        <Button
+            android:id="@+id/editTextTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="@string/setTime"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.447"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMedicineDose"
+            app:layout_constraintVertical_bias="0.121" />
+
+        <!-- TODO Add TimePicker to add time value -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
