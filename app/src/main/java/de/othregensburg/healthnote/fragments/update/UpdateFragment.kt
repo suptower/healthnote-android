@@ -1,17 +1,15 @@
 package de.othregensburg.healthnote.fragments.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import de.othregensburg.healthnote.R
-import de.othregensburg.healthnote.databinding.FragmentListBinding
 import de.othregensburg.healthnote.databinding.FragmentUpdateBinding
 import de.othregensburg.healthnote.model.Medicament
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
@@ -25,7 +23,7 @@ class UpdateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         val view = binding.root
@@ -37,6 +35,8 @@ class UpdateFragment : Fragment() {
         binding.updateCheckMarkButton.setOnClickListener {
             updateItem()
         }
+
+        setHasOptionsMenu(true)
 
 
         return view
@@ -60,6 +60,30 @@ class UpdateFragment : Fragment() {
 
     private fun inputCheck(name: String) : Boolean {
         return !(TextUtils.isEmpty(name))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete) {
+            deleteMed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteMed() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") {_, _ ->
+            mMedicamentViewModel.deleteMed(args.currentMed)
+            Toast.makeText(requireContext(), "Successfully removed: ${args.currentMed.name}", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+        }
+        builder.setNegativeButton("No") {_, _ -> }
+        builder.setTitle("Delete ${args.currentMed.name}?")
+        builder.setMessage("Are you sure you want to delete ${args.currentMed.name}?")
+        builder.create().show()
     }
 
 }

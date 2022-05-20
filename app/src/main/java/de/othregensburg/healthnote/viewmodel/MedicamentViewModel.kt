@@ -32,4 +32,16 @@ class MedicamentViewModel(application: Application): AndroidViewModel(applicatio
             repository.updateMed(medicament)
         }
     }
+
+    fun deleteMed(medicament: Medicament) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteMed(medicament)
+        }
+    }
+
+    fun deleteAllMeds() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllMeds()
+        }
+    }
 }

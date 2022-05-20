@@ -13,6 +13,12 @@ interface MedicamentDao {
     @Update
     suspend fun updateMed(med: Medicament)
 
+    @Delete
+    suspend fun deleteMed(medicament: Medicament)
+
+    @Query("DELETE FROM med_table")
+    suspend fun deleteAllMeds()
+
     @Query("SELECT * FROM med_table ORDER BY id")
     fun readAllData(): LiveData<List<Medicament>>
 
