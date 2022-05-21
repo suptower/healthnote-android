@@ -16,7 +16,6 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameItem: TextView = view.findViewById(R.id.medName)
-        val idItem: TextView = view.findViewById(R.id.medId)
         val rowLayout: ConstraintLayout = view.findViewById(R.id.rowlayout)
     }
 
@@ -28,7 +27,6 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = medList[position]
         holder.nameItem.text = currentItem.name
-        holder.idItem.text = currentItem.id.toString()
 
         holder.rowLayout.setOnClickListener {
             val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)

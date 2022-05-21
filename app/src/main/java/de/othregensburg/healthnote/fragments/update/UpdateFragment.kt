@@ -1,6 +1,7 @@
 package de.othregensburg.healthnote.fragments.update
 
 import android.app.AlertDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
@@ -13,6 +14,8 @@ import de.othregensburg.healthnote.R
 import de.othregensburg.healthnote.databinding.FragmentUpdateBinding
 import de.othregensburg.healthnote.model.Medicament
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UpdateFragment : Fragment() {
 
@@ -30,10 +33,24 @@ class UpdateFragment : Fragment() {
 
         mMedicamentViewModel = ViewModelProvider(this)[MedicamentViewModel::class.java]
 
-        binding.updateMedicineName.setText(args.currentMed.name)
+        binding.addMedicineName.setText(args.currentMed.name)
+        binding.addMedicineDose.setText(args.currentMed.dose)
+        binding.addMedicineForm.setText(args.currentMed.form)
+        binding.editTextTime.text = args.currentMed.time
 
-        binding.updateCheckMarkButton.setOnClickListener {
+        binding.checkMarkButton.setOnClickListener {
             updateItem()
+        }
+
+        binding.editTextTime.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+                binding.editTextTime.text = SimpleDateFormat("HH:mm").format(cal.time)
+            }
+            TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(
+                Calendar.MINUTE), true).show()
         }
 
         setHasOptionsMenu(true)
@@ -44,10 +61,12 @@ class UpdateFragment : Fragment() {
     }
 
     private fun updateItem() {
-        val name = binding.updateMedicineName.text.toString()
-
-        if (inputCheck(name)) {
-            val updatedMed = Medicament(args.currentMed.id, name)
+        val name = binding.addMedicineName.text.toString()
+        val form = binding.addMedicineForm.text.toString()
+        val dose = binding.addMedicineDose.text.toString()
+        val time = binding.editTextTime.text.toString()
+        if (inputCheck(name, form, dose, time)) {
+            val updatedMed = Medicament(args.currentMed.id, name, time, form, dose)
             mMedicamentViewModel.updateMed(updatedMed)
             Toast.makeText(requireContext(),"Updated successfully", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
@@ -58,8 +77,8 @@ class UpdateFragment : Fragment() {
 
     }
 
-    private fun inputCheck(name: String) : Boolean {
-        return !(TextUtils.isEmpty(name))
+    private fun inputCheck(name: String, form: String, dose: String, time: String) : Boolean {
+        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -70,8 +89,12 @@ class UpdateFragment : Fragment() {
         if (item.itemId == R.id.menu_delete) {
             deleteMed()
         }
+        else if (item.itemId == android.R.id.home) {
+            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+        }
         return super.onOptionsItemSelected(item)
     }
+
 
     private fun deleteMed() {
         val builder = AlertDialog.Builder(requireContext())

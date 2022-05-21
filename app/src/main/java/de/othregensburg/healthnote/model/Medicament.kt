@@ -10,5 +10,8 @@ import kotlinx.parcelize.Parcelize
 data class Medicament(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val name: String
+    val name: String,
+    val time: String,
+    val form: String,
+    val dose: String
 ) : Parcelable
