@@ -7,7 +7,7 @@
     <string name="formOfAdministration">Form of administration</string>
     <string name="name">Name</string>
     <string name="dose">Dose</string>
-    <string name="time">Time</string>
+    <string name="timeOfConsumption">Time of consumption</string>
     <string name="delete">Delete</string>
     <string name="checkmark">Checkmark</string>
     <string name="setTime">SET TIME</string>
