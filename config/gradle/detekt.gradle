@@ -1,0 +1,22 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+detekt {
+    config = files("config/detekt/detekt.yml")
+    source = files(
+            "app/src/main/java",
+    )
+    autoCorrect = false
+}
+
+tasks.named("detekt").configure {
+    reports {
+        xml.required.set(true)
+        xml.outputLocation.set(file("build/reports/detekt.xml"))
+
+        html.required.set(true)
+        html.outputLocation.set(file("build/reports/detekt.html"))
+
+        txt.required.set(false)
+        sarif.required.set(false)
+    }
+}
