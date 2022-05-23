@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import de.othregensburg.healthnote.model.Medicament
 
 @Database(entities = [Medicament::class], version = 1, exportSchema = false)
 abstract class MedicamentDatabase: RoomDatabase() {
