@@ -4,9 +4,11 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.othregensburg.healthnote.ListAdapter
 import de.othregensburg.healthnote.R
@@ -29,6 +31,10 @@ class ListFragment : Fragment() {
         val adapter = ListAdapter()
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
+        val divider : DividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
+        ContextCompat.getDrawable(requireContext(), R.drawable.list_divider)
+            ?.let { divider.setDrawable(it) }
+        recyclerView.addItemDecoration(divider)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         mMedViewModel = ViewModelProvider(this)[MedicamentViewModel::class.java]

@@ -11,4 +11,5 @@
     <string name="delete">Delete</string>
     <string name="checkmark">Checkmark</string>
     <string name="setTime">SET TIME</string>
+    <string name="addFabContentDescription">Add Medicament</string>
 </resources>
