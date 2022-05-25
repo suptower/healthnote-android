@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import de.othregensburg.healthnote.R
+import de.othregensburg.healthnote.databinding.FragmentAddBinding
 import de.othregensburg.healthnote.model.Medicament
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
-import de.othregensburg.healthnote.databinding.FragmentAddBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,7 +42,7 @@ class AddFragment : Fragment() {
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
-                binding.editTextTime.text = SimpleDateFormat("HH:mm").format(cal.time)
+                binding.editTextTime.text = SimpleDateFormat("HH:mm", Locale.GERMANY).format(cal.time)
             }
             TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
@@ -57,8 +57,9 @@ class AddFragment : Fragment() {
         val form = binding.addMedicineForm.text.toString()
         val dose = binding.addMedicineDose.text.toString()
         val time = binding.editTextTime.text.toString()
+        val alertBoolean = binding.fireAlertSwitch.isChecked
         if (inputCheck(name, form, dose, time)) {
-            val med = Medicament(0, name, time, form, dose)
+            val med = Medicament(0, name, time, form, dose, alertBoolean)
             mMedViewModel.addMed(med)
             Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
@@ -68,7 +69,7 @@ class AddFragment : Fragment() {
     }
 
     private fun inputCheck(name: String, form: String, dose: String, time: String) : Boolean {
-        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time))
+        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time) || TextUtils.equals(time, "SET TIME"))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

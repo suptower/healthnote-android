@@ -133,6 +133,18 @@
             app:layout_constraintTop_toBottomOf="@+id/addMedicineDose" />
 
 
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/fireAlertSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fireAlertQuestion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+            app:layout_constraintVertical_bias="0.166" />
+
+
         <!-- TODO Add TimePicker to add time value -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

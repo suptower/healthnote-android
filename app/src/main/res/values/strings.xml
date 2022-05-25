@@ -12,4 +12,5 @@
     <string name="checkmark">Checkmark</string>
     <string name="setTime">SET TIME</string>
     <string name="addFabContentDescription">Add Medicament</string>
+    <string name="fireAlertQuestion">Fire Alert</string>
 </resources>

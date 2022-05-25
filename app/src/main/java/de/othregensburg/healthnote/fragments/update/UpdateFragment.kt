@@ -5,8 +5,8 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -37,6 +37,7 @@ class UpdateFragment : Fragment() {
         binding.addMedicineDose.setText(args.currentMed.dose)
         binding.addMedicineForm.setText(args.currentMed.form)
         binding.editTextTime.text = args.currentMed.time
+        binding.fireAlertSwitch.isChecked = args.currentMed.alert
 
         binding.checkMarkButton.setOnClickListener {
             updateItem()
@@ -47,7 +48,7 @@ class UpdateFragment : Fragment() {
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
-                binding.editTextTime.text = SimpleDateFormat("HH:mm").format(cal.time)
+                binding.editTextTime.text = SimpleDateFormat("HH:mm", Locale.GERMANY).format(cal.time)
             }
             TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(
                 Calendar.MINUTE), true).show()
@@ -65,9 +66,10 @@ class UpdateFragment : Fragment() {
         val form = binding.addMedicineForm.text.toString()
         val dose = binding.addMedicineDose.text.toString()
         val time = binding.editTextTime.text.toString()
+        val alertBoolean = binding.fireAlertSwitch.isChecked
         if (inputCheck(name, form, dose, time)) {
-            val updatedMed = Medicament(args.currentMed.id, name, time, form, dose)
-            mMedicamentViewModel.updateMed(updatedMed)
+            val med = Medicament(0, name, time, form, dose, alertBoolean)
+            mMedicamentViewModel.updateMed(med)
             Toast.makeText(requireContext(),"Updated successfully", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
@@ -78,7 +80,7 @@ class UpdateFragment : Fragment() {
     }
 
     private fun inputCheck(name: String, form: String, dose: String, time: String) : Boolean {
-        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time))
+        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time) || TextUtils.equals(time, "SET TIME"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

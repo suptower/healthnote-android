@@ -13,5 +13,6 @@ data class Medicament(
     val name: String,
     val time: String,
     val form: String,
-    val dose: String
+    val dose: String,
+    val alert: Boolean
 ) : Parcelable

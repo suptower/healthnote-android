@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.othregensburg.healthnote.ListAdapter
+import de.othregensburg.healthnote.MainActivity
 import de.othregensburg.healthnote.R
 import de.othregensburg.healthnote.databinding.FragmentListBinding
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
@@ -31,15 +32,19 @@ class ListFragment : Fragment() {
         val adapter = ListAdapter()
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
-        val divider : DividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL)
+        val divider = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
         ContextCompat.getDrawable(requireContext(), R.drawable.list_divider)
             ?.let { divider.setDrawable(it) }
         recyclerView.addItemDecoration(divider)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         mMedViewModel = ViewModelProvider(this)[MedicamentViewModel::class.java]
+        // Cancel all alerts and then reschedule them so there are no double or triple executions etc.
         mMedViewModel.readAllData.observe(viewLifecycleOwner) { meds ->
             adapter.setData(meds)
+            val mainAct = activity as MainActivity
+            mainAct.cancelAlerts()
+            mainAct.scheduleAlerts(meds)
         }
 
         binding.addButton.setOnClickListener {
