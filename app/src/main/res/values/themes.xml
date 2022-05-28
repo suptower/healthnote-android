@@ -10,7 +10,12 @@
         <item name="colorSecondaryVariant">@color/healthNote_pink</item>
         <item name="colorOnSecondary">@color/healthNote_grey</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.HealthNote.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
