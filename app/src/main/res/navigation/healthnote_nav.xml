@@ -38,11 +38,4 @@
             android:name="currentMed"
             app:argType="de.othregensburg.healthnote.model.Medicament" />
     </fragment>
-
-    <fragment
-        android:id="@+id/calendarFragment"
-        android:name="de.othregensburg.healthnote.fragments.calendar.CalendarFragment"
-        android:label="@string/menu_calendar"
-        tools:layout="@layout/fragment_calendar" />
-
 </navigation>
