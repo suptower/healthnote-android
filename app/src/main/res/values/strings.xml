@@ -23,4 +23,11 @@
     <string name="menu_calendar">Calendar</string>
 
 
+    <string name="addFabContentDescription">Add Medicament</string>
+    <string name="fireAlertQuestion">Enable notification</string>
+    <string name="NotificationRepeat">Repeat Interval</string>
+    <string-array name="repeat_array">
+        <item>Daily</item>
+        <item>Weekly</item>
+    </string-array>
 </resources>
