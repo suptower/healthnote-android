@@ -8,12 +8,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import de.othregensburg.healthnote.model.Medicament
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,16 +42,28 @@ class MainActivity : AppCompatActivity() {
                 // Set Alert according to data of med
                 val alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
                 val alarmIntent = Intent(this, AlarmReceiver::class.java)
-                val pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
+                alarmIntent.putExtra("MED_ID", med.id)
+                alarmIntent.putExtra("MED_NAME", med.name)
+                val pendingIntent = PendingIntent.getBroadcast(this, med.id, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
                 val cal = Calendar.getInstance()
                 val hour = med.time.substring(0,2).toInt()
                 val min = med.time.substring(3,5).toInt()
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, min)
                 cal.set(Calendar.SECOND, 0)
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.timeInMillis, pendingIntent)
-                val toastText = "Successfully scheduled alert at $hour:$min"
-                Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
+                val repeatArr = resources.getStringArray(R.array.repeat_array)
+                if (med.repeatSetting == repeatArr[0]) {
+                    // Daily
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 86400000, pendingIntent)
+                    val toastText = "Successfully scheduled daily alert at $hour:$min"
+                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    // Weekly
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 604800000, pendingIntent)
+                    val toastText = "Successfully scheduled weekly alert at $hour:$min"
+                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

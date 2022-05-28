@@ -12,5 +12,10 @@
     <string name="checkmark">Checkmark</string>
     <string name="setTime">SET TIME</string>
     <string name="addFabContentDescription">Add Medicament</string>
-    <string name="fireAlertQuestion">Fire Alert</string>
+    <string name="fireAlertQuestion">Enable notification</string>
+    <string name="NotificationRepeat">Repeat Interval</string>
+    <string-array name="repeat_array">
+        <item>Daily</item>
+        <item>Weekly</item>
+    </string-array>
 </resources>

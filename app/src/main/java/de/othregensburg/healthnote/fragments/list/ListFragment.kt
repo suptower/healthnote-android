@@ -51,6 +51,9 @@ class ListFragment : Fragment() {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
         }
 
+
+
+
         setHasOptionsMenu(true)
 
         return view
@@ -78,5 +81,6 @@ class ListFragment : Fragment() {
         builder.setMessage("Are you sure you want to delete everything?")
         builder.create().show()
     }
+
 
 }

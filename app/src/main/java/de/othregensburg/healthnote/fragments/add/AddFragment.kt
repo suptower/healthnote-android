@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,9 +21,10 @@ import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddFragment : Fragment() {
+class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var mMedViewModel: MedicamentViewModel
+    private lateinit var repeatInterval: String
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -47,6 +51,15 @@ class AddFragment : Fragment() {
             TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
 
+        val spinner : Spinner = binding.repeatDropDown
+        ArrayAdapter.createFromResource(requireContext(), R.array.repeat_array, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+        spinner.onItemSelectedListener = this
+
+
+
         setHasOptionsMenu(true)
 
         return view
@@ -59,7 +72,7 @@ class AddFragment : Fragment() {
         val time = binding.editTextTime.text.toString()
         val alertBoolean = binding.fireAlertSwitch.isChecked
         if (inputCheck(name, form, dose, time)) {
-            val med = Medicament(0, name, time, form, dose, alertBoolean)
+            val med = Medicament(0, name, time, form, dose, alertBoolean, repeatInterval)
             mMedViewModel.addMed(med)
             Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
@@ -77,5 +90,15 @@ class AddFragment : Fragment() {
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        if (p0 != null) {
+            repeatInterval = p0.getItemAtPosition(p2).toString()
+        }
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        Toast.makeText(requireContext(), "Please fill out the repeat dropdown.", Toast.LENGTH_SHORT).show()
     }
 }
