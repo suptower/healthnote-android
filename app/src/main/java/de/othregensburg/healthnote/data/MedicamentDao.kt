@@ -25,8 +25,4 @@ interface MedicamentDao {
     @Query("SELECT * FROM med_table ORDER BY id")
     fun readAllData(): LiveData<List<Medicament>>
 
-    @Query("SELECT * FROM med_table ORDER BY id")
-    fun nonLiveReadAllData(): Array<Medicament>
-
-
 }

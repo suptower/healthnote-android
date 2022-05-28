@@ -10,7 +10,6 @@
         android:name="de.othregensburg.healthnote.fragments.list.ListFragment"
         android:label="List"
         tools:layout="@layout/fragment_list">
-        <!-- TODO Somehow action tag is not allowed in fragment? Solution unclear at the moment -->
         <action
             android:id="@+id/action_listFragment_to_updateFragment"
             app:destination="@id/updateFragment" />
