@@ -5,11 +5,8 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,11 +17,10 @@ import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class UpdateFragment : Fragment() {
 
     private val args by navArgs<UpdateFragmentArgs>()
     private lateinit var mMedicamentViewModel: MedicamentViewModel
-    private lateinit var repeatInterval: String
     private var _binding: FragmentUpdateBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -41,28 +37,20 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.addMedicineDose.setText(args.currentMed.dose)
         binding.addMedicineForm.setText(args.currentMed.form)
         binding.editTextTime.text = args.currentMed.time
-        binding.fireAlertSwitch.isChecked = args.currentMed.alert
+
+        binding.checkMarkButton.setOnClickListener {
+            updateItem()
+        }
 
         binding.editTextTime.setOnClickListener {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
-                binding.editTextTime.text = SimpleDateFormat("HH:mm", Locale.GERMANY).format(cal.time).toString()
+                binding.editTextTime.text = SimpleDateFormat("HH:mm").format(cal.time)
             }
             TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(
                 Calendar.MINUTE), true).show()
-        }
-
-        val spinner : Spinner = binding.repeatDropDown
-        ArrayAdapter.createFromResource(requireContext(), R.array.repeat_array, android.R.layout.simple_spinner_item).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
-        spinner.onItemSelectedListener = this
-
-        binding.checkMarkButton.setOnClickListener {
-            updateItem()
         }
 
         setHasOptionsMenu(true)
@@ -77,10 +65,9 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val form = binding.addMedicineForm.text.toString()
         val dose = binding.addMedicineDose.text.toString()
         val time = binding.editTextTime.text.toString()
-        val alertBoolean = binding.fireAlertSwitch.isChecked
         if (inputCheck(name, form, dose, time)) {
-            val med = Medicament(args.currentMed.id, name, time, form, dose, alertBoolean, repeatInterval)
-            mMedicamentViewModel.updateMed(med)
+            val updatedMed = Medicament(args.currentMed.id, name, time, form, dose)
+            mMedicamentViewModel.updateMed(updatedMed)
             Toast.makeText(requireContext(),"Updated successfully", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
@@ -91,7 +78,7 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun inputCheck(name: String, form: String, dose: String, time: String) : Boolean {
-        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time) || TextUtils.equals(time, "SET TIME"))
+        return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -120,16 +107,6 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
         builder.setTitle("Delete ${args.currentMed.name}?")
         builder.setMessage("Are you sure you want to delete ${args.currentMed.name}?")
         builder.create().show()
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        if (p0 != null) {
-            repeatInterval = p0.getItemAtPosition(p2).toString()
-        }
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        Toast.makeText(requireContext(), "Please fill out the repeat dropdown.", Toast.LENGTH_SHORT).show()
     }
 
 }
