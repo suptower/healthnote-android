@@ -11,7 +11,6 @@ import de.othregensburg.healthnote.fragments.list.ListFragmentDirections
 import de.othregensburg.healthnote.model.Medicament
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.ViewHolder>() {
-
     private var medList = emptyList<Medicament>()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
