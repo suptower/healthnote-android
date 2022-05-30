@@ -99,13 +99,13 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_delete) {
-            deleteMed()
-        }
-        else if (item.itemId == android.R.id.home) {
+        if (item.itemId == android.R.id.home) {
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
-        return super.onOptionsItemSelected(item)
+        else if (item.itemId == R.id.menu_delete) {
+            deleteMed()
+        }
+        return true
     }
 
 

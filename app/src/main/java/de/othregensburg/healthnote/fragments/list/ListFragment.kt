@@ -59,6 +59,7 @@ class ListFragment : Fragment() {
         return view
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.delete_menu, menu)
     }
@@ -67,7 +68,7 @@ class ListFragment : Fragment() {
         if (item.itemId == R.id.menu_delete) {
             deleteAllMeds()
         }
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
     private fun deleteAllMeds() {

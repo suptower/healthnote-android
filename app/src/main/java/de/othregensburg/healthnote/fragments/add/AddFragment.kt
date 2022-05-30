@@ -3,10 +3,7 @@ package de.othregensburg.healthnote.fragments.add
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -85,11 +82,12 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return !(TextUtils.isEmpty(name) || TextUtils.isEmpty(form) || TextUtils.isEmpty(dose) || TextUtils.isEmpty(time) || TextUtils.equals(time, "SET TIME"))
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
         }
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
