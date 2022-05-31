@@ -54,6 +54,10 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 Calendar.MINUTE), true).show()
         }
 
+        binding.selectImage.setOnClickListener {
+            // TODO UPDATE PICTURE
+        }
+
         val spinner : Spinner = binding.repeatDropDown
         ArrayAdapter.createFromResource(requireContext(), R.array.repeat_array, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

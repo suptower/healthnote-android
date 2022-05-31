@@ -128,18 +128,31 @@
                     android:id="@+id/repeatDropDown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:minHeight="48dp"
+                    app:layout_constraintBottom_toTopOf="@id/selectImage"
                     app:layout_constraintEnd_toEndOf="@+id/editTextTime"
-                    app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch" />
+                    app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/repeatIntervalText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/NotificationRepeat"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/selectImage"
                     app:layout_constraintStart_toStartOf="@+id/editTextTime"
                     app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch" />
+
+                <ImageView
+                    android:id="@+id/selectImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    app:srcCompat="@drawable/ic_menu_gallery"
+                    app:layout_constraintTop_toBottomOf="@id/repeatIntervalText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
