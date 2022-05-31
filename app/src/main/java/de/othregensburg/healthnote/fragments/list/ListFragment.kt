@@ -68,7 +68,7 @@ class ListFragment : Fragment() {
         if (item.itemId == R.id.menu_delete) {
             deleteAllMeds()
         }
-        return true
+        return super.onOptionsItemSelected(item)
     }
 
     private fun deleteAllMeds() {

@@ -1,140 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.add.AddFragment">
+    android:fillViewport="true">
 
-        <EditText
-            android:id="@+id/addMedicineDose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/addMedicineDosePreview"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textColorHint="#757575"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTime"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addMedicineForm" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".fragments.add.AddFragment">
 
-        <TextView
-            android:id="@+id/doseTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dose"
-            app:layout_constraintBottom_toTopOf="@+id/addMedicineDose"
-            app:layout_constraintStart_toStartOf="@id/addMedicineDose" />
+                <EditText
+                    android:id="@+id/addMedicineDose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/addMedicineDosePreview"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575"
+                    app:layout_constraintBottom_toTopOf="@+id/editTextTime"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addMedicineForm" />
 
-        <EditText
-            android:id="@+id/addMedicineName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/addMedicineNamePreview"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textColorHint="#757575"
-            app:layout_constraintBottom_toTopOf="@+id/addMedicineForm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/doseTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dose"
+                    app:layout_constraintBottom_toTopOf="@+id/addMedicineDose"
+                    app:layout_constraintStart_toStartOf="@id/addMedicineDose" />
 
-        <EditText
-            android:id="@+id/addMedicineForm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/addMedicineFormPreview"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textColorHint="#757575"
-            app:layout_constraintBottom_toTopOf="@+id/addMedicineDose"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addMedicineName" />
+                <EditText
+                    android:id="@+id/addMedicineName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/addMedicineNamePreview"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575"
+                    app:layout_constraintBottom_toTopOf="@+id/addMedicineForm"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/formTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/formOfAdministration"
-            app:layout_constraintBottom_toTopOf="@+id/addMedicineForm"
-            app:layout_constraintStart_toStartOf="@id/addMedicineForm" />
+                <EditText
+                    android:id="@+id/addMedicineForm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/addMedicineFormPreview"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textColorHint="#757575"
+                    app:layout_constraintBottom_toTopOf="@+id/addMedicineDose"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addMedicineName" />
 
-        <TextView
-            android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
-            app:layout_constraintBottom_toTopOf="@+id/addMedicineName"
-            app:layout_constraintStart_toStartOf="@id/addMedicineName" />
+                <TextView
+                    android:id="@+id/formTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/formOfAdministration"
+                    app:layout_constraintBottom_toTopOf="@+id/addMedicineForm"
+                    app:layout_constraintStart_toStartOf="@id/addMedicineForm" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/checkMarkButton"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/healthNote_pink"
-            android:contentDescription="@string/checkmark"
-            android:src="@drawable/icon_checkmark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/nameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    app:layout_constraintBottom_toTopOf="@+id/addMedicineName"
+                    app:layout_constraintStart_toStartOf="@id/addMedicineName" />
 
-        <Button
-            android:id="@+id/editTextTime"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="@string/setTime"
-            app:layout_constraintBottom_toTopOf="@+id/fireAlertSwitch"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addMedicineDose"
-            tools:ignore="TextContrastCheck" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/checkMarkButton"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="@color/healthNote_pink"
+                    android:contentDescription="@string/checkmark"
+                    android:src="@drawable/icon_checkmark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/timeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/timeOfConsumption"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTime"
-            app:layout_constraintStart_toStartOf="@id/editTextTime" />
+                <Button
+                    android:id="@+id/editTextTime"
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text="@string/setTime"
+                    app:layout_constraintBottom_toTopOf="@+id/fireAlertSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addMedicineDose"
+                    tools:ignore="TextContrastCheck" />
 
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/fireAlertSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fireAlertQuestion"
-            app:layout_constraintBottom_toTopOf="@+id/repeatDropDown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
-
-        <Spinner
-            android:id="@+id/repeatDropDown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTime"
-            app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/NotificationRepeat"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/editTextTime"
-            app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch" />
+                <TextView
+                    android:id="@+id/timeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timeOfConsumption"
+                    app:layout_constraintBottom_toTopOf="@+id/editTextTime"
+                    app:layout_constraintStart_toStartOf="@id/editTextTime" />
 
 
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/fireAlertSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fireAlertQuestion"
+                    app:layout_constraintBottom_toTopOf="@+id/repeatDropDown"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <Spinner
+                    android:id="@+id/repeatDropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextTime"
+                    app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/NotificationRepeat"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/editTextTime"
+                    app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+
