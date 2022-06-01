@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import de.othregensburg.healthnote.R
 import de.othregensburg.healthnote.databinding.FragmentUpdateBinding
+import de.othregensburg.healthnote.fragments.pictureDialog.AddPictureDialogFragment
 import de.othregensburg.healthnote.model.Medicament
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import java.text.SimpleDateFormat
@@ -55,7 +56,7 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.selectImage.setOnClickListener {
-            // TODO UPDATE PICTURE
+            selectPicture()
         }
 
         val spinner : Spinner = binding.repeatDropDown
@@ -73,6 +74,12 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
 
         return view
+
+    }
+
+    private fun selectPicture() {
+        val picturePicker = AddPictureDialogFragment()
+        picturePicker.show(parentFragmentManager, "choosePic")
 
     }
 

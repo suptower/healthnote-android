@@ -27,4 +27,8 @@
 
     <string name="menu_list">List</string>
     <string name="menu_calendar">Calendar</string>
+
+    <string name="choosePictureSource">Select picture from</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 </resources>
