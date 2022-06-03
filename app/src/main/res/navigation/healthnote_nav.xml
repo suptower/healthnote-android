@@ -45,4 +45,11 @@
         android:label="@string/menu_calendar"
         tools:layout="@layout/fragment_calendar" />
 
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="de.othregensburg.healthnote.fragments.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+
 </navigation>

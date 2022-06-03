@@ -20,6 +20,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import de.othregensburg.healthnote.databinding.ActivityMainBinding
 import de.othregensburg.healthnote.model.Medicament
+import de.othregensburg.healthnote.model.Settings
+import de.othregensburg.healthnote.viewmodel.SettingsViewModel
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.listFragment, R.id.calendarFragment
+                R.id.listFragment, R.id.calendarFragment, R.id.settingsFragment
             ), drawerLayout
         )
 
@@ -113,5 +115,19 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun prepareSettings(settings: List<Settings>?, svmodel: SettingsViewModel) {
+        if (settings != null) {
+            if (settings.size != 1) {
+                svmodel.deleteAllSettings()
+                val set = Settings(0, false, "0", false)
+                svmodel.addSetting(set)
+            }
+        } else {
+            svmodel.deleteAllSettings()
+            val set = Settings(0, false, "0", false)
+            svmodel.addSetting(set)
+        }
     }
 }
