@@ -43,13 +43,39 @@ class SettingsFragment : Fragment() {
         }
 
         binding.enablePIN.setOnClickListener {
-            val s2 = Settings(settingsData[0].id, binding.enablePIN.isChecked, settingsData[0].code, settingsData[0].useBiometrics)
-            svmodel.updateSetting(s2)
             binding.changePIN.isClickable = settingsData[0].usePIN
             if (binding.enablePIN.isChecked) {
                 binding.changePIN.setTextColor(Color.BLACK)
+                var text = ""
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Enter a PIN")
+                val editText = EditText(requireContext())
+                editText.inputType = (InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD)
+                editText.hint = "Enter your desired PIN"
+                val layout = LinearLayout(requireContext())
+                layout.gravity = Gravity.CENTER_HORIZONTAL
+                layout.setPadding(16, 16, 16, 16)
+                layout.addView(editText)
+                builder.setView(layout)
+                builder.setPositiveButton("OK") { _, _ ->
+                    text = editText.text.toString()
+                    Toast.makeText(requireContext(), "Successfully set PIN", Toast.LENGTH_SHORT).show()
+                    val s2 = Settings(settingsData[0].id, binding.enablePIN.isChecked, text, settingsData[0].useBiometrics)
+                    svmodel.updateSetting(s2)
+                }
+                builder.setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.cancel()
+                    val s2 = Settings(settingsData[0].id, false, "0", settingsData[0].useBiometrics)
+                    svmodel.updateSetting(s2)
+                    binding.enablePIN.isChecked = false
+                    binding.changePIN.setTextColor(Color.LTGRAY)
+                    binding.changePIN.isClickable = false
+                }
+                builder.show()
             } else {
                 binding.changePIN.setTextColor(Color.LTGRAY)
+                val s2 = Settings(settingsData[0].id, binding.enablePIN.isChecked, settingsData[0].code, settingsData[0].useBiometrics)
+                svmodel.updateSetting(s2)
             }
         }
 

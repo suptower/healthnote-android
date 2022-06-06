@@ -14,7 +14,6 @@ import de.othregensburg.healthnote.ListAdapter
 import de.othregensburg.healthnote.MainActivity
 import de.othregensburg.healthnote.R
 import de.othregensburg.healthnote.databinding.FragmentListBinding
-import de.othregensburg.healthnote.model.Settings
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import de.othregensburg.healthnote.viewmodel.SettingsViewModel
 
@@ -51,7 +50,6 @@ class ListFragment : Fragment() {
         }
         // Prepare settings
         svmodel = ViewModelProvider(this)[SettingsViewModel::class.java]
-        var settingsData : List<Settings>
         svmodel.readAllData.observe(viewLifecycleOwner) { settings ->
             val mainAct = activity as MainActivity
             mainAct.prepareSettings(settings, svmodel)

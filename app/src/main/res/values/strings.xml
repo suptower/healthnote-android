@@ -31,4 +31,7 @@
     <string name="protPin">Protection PIN</string>
     <string name="changePin">Change PIN</string>
     <string name="enableBiometrics">Use biometric authentication</string>
+    <string name="passwordHint">Enter your PIN</string>
+    <string name="PIN">PIN</string>
+    <string name="checkPin">Check PIN</string>
 </resources>

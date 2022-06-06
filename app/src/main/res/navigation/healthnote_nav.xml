@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_listFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_pinFragment"
+            app:destination="@id/pinFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -50,6 +53,15 @@
         android:name="de.othregensburg.healthnote.fragments.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/pinFragment"
+        android:name="de.othregensburg.healthnote.fragments.login.PinFragment"
+        android:label="fragment_pin"
+        tools:layout="@layout/fragment_pin" >
+        <action
+            android:id="@+id/action_pinFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 
 
 </navigation>
