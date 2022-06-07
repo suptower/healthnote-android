@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/healthnote_nav"
-    app:startDestination="@id/pinFragment">
+    app:startDestination="@id/bioAuthFragment">
 
     <fragment
         android:id="@+id/listFragment"
@@ -60,5 +60,18 @@
             app:destination="@id/listFragment" />
     </fragment>
 
+
+    <fragment
+        android:id="@+id/bioAuthFragment"
+        android:name="de.othregensburg.healthnote.fragments.login.BioAuthFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_bio_authentication" >
+        <action
+            android:id="@+id/action_bioAuthFragment_to_pinFragment"
+            app:destination="@id/pinFragment" />
+        <action
+            android:id="@+id/action_bioAuthFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 
 </navigation>

@@ -18,6 +18,7 @@ class PinFragment : Fragment() {
     private var _binding: FragmentPinBinding? = null
     private val binding get() = _binding!!
     private lateinit var pin: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

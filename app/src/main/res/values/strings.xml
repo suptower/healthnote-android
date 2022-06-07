@@ -34,4 +34,8 @@
     <string name="passwordHint">Enter your PIN</string>
     <string name="PIN">PIN</string>
     <string name="checkPin">Check PIN</string>
+
+    <string name="authentication_btn">Authenticate</string>
+    <string name="authentication_text">Click Button to authenticate</string>
+    <string name="use_pin">Use pin to authenticate</string>
 </resources>
