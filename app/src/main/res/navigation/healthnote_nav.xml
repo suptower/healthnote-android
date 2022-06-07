@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/healthnote_nav"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/pinFragment">
 
     <fragment
         android:id="@+id/listFragment"
@@ -16,9 +16,6 @@
         <action
             android:id="@+id/action_listFragment_to_addFragment"
             app:destination="@id/addFragment" />
-        <action
-            android:id="@+id/action_listFragment_to_pinFragment"
-            app:destination="@id/pinFragment" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -56,7 +53,7 @@
     <fragment
         android:id="@+id/pinFragment"
         android:name="de.othregensburg.healthnote.fragments.login.PinFragment"
-        android:label="fragment_pin"
+        android:label="Login"
         tools:layout="@layout/fragment_pin" >
         <action
             android:id="@+id/action_pinFragment_to_listFragment"

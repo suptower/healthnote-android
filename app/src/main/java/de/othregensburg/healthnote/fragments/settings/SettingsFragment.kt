@@ -85,7 +85,6 @@ class SettingsFragment : Fragment() {
         }
 
         binding.changePIN.setOnClickListener {
-            var text = ""
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Enter a PIN")
             val editText = EditText(requireContext())
@@ -97,15 +96,15 @@ class SettingsFragment : Fragment() {
             layout.addView(editText)
             builder.setView(layout)
             builder.setPositiveButton("OK") { _, _ ->
-                text = editText.text.toString()
+                val text = editText.text.toString()
                 Toast.makeText(requireContext(), "Successfully set PIN", Toast.LENGTH_SHORT).show()
+                val s2 = Settings(settingsData[0].id, settingsData[0].usePIN, text, binding.enableBiometrics.isChecked)
+                svmodel.updateSetting(s2)
             }
             builder.setNegativeButton("Cancel") { dialog, _ ->
                 dialog.cancel()
             }
             builder.show()
-            val s2 = Settings(settingsData[0].id, settingsData[0].usePIN, text, binding.enableBiometrics.isChecked)
-            svmodel.updateSetting(s2)
         }
 
         return view
