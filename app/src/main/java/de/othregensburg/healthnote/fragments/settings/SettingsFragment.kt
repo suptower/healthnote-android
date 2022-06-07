@@ -46,7 +46,6 @@ class SettingsFragment : Fragment() {
             binding.changePIN.isClickable = settingsData[0].usePIN
             if (binding.enablePIN.isChecked) {
                 binding.changePIN.setTextColor(Color.BLACK)
-                var text = ""
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Enter a PIN")
                 val editText = EditText(requireContext())
@@ -58,7 +57,7 @@ class SettingsFragment : Fragment() {
                 layout.addView(editText)
                 builder.setView(layout)
                 builder.setPositiveButton("OK") { _, _ ->
-                    text = editText.text.toString()
+                    val text = editText.text.toString()
                     Toast.makeText(requireContext(), "Successfully set PIN", Toast.LENGTH_SHORT).show()
                     val s2 = Settings(settingsData[0].id, binding.enablePIN.isChecked, text, settingsData[0].useBiometrics)
                     svmodel.updateSetting(s2)
