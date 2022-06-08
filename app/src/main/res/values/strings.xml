@@ -27,4 +27,15 @@
 
     <string name="menu_list">List</string>
     <string name="menu_calendar">Calendar</string>
+    <string name="menu_settings">Settings</string>
+    <string name="protPin">Protection PIN</string>
+    <string name="changePin">Change PIN</string>
+    <string name="enableBiometrics">Use biometric authentication</string>
+    <string name="passwordHint">Enter your PIN</string>
+    <string name="PIN">PIN</string>
+    <string name="checkPin">Check PIN</string>
+
+    <string name="authentication_btn">Authenticate</string>
+    <string name="authentication_text">Click Button to authenticate</string>
+    <string name="use_pin">Use pin to authenticate</string>
 </resources>

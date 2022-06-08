@@ -15,10 +15,12 @@ import de.othregensburg.healthnote.MainActivity
 import de.othregensburg.healthnote.R
 import de.othregensburg.healthnote.databinding.FragmentListBinding
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
+import de.othregensburg.healthnote.viewmodel.SettingsViewModel
 
 class ListFragment : Fragment() {
 
     private lateinit var mMedViewModel: MedicamentViewModel
+    private lateinit var svmodel: SettingsViewModel
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -45,6 +47,12 @@ class ListFragment : Fragment() {
             val mainAct = activity as MainActivity
             mainAct.cancelAlerts()
             mainAct.scheduleAlerts(meds)
+        }
+        // Prepare settings
+        svmodel = ViewModelProvider(this)[SettingsViewModel::class.java]
+        svmodel.readAllData.observe(viewLifecycleOwner) { settings ->
+            val mainAct = activity as MainActivity
+            mainAct.prepareSettings(settings, svmodel)
         }
 
         binding.addButton.setOnClickListener {
