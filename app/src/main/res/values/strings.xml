@@ -11,11 +11,23 @@
     <string name="delete">Delete</string>
     <string name="checkmark">Checkmark</string>
     <string name="setTime">SET TIME</string>
-    <string name="addFabContentDescription">Add Medicament</string>
-    <string name="fireAlertQuestion">Enable notification</string>
-    <string name="NotificationRepeat">Repeat Interval</string>
-    <string-array name="repeat_array">
-        <item>Daily</item>
-        <item>Weekly</item>
-    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">HealthNote</string>
+    <string name="nav_header_subtitle">healthnote.app</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="calendar_title">Title</string>
+    <string name="calendar_location">Location</string>
+    <string name="calendar_description">Description</string>
+    <string name="calender_datetext">Date</string>
+    <string name="calender_time">Set Time</string>
+    <string name="calender_date">Set Date</string>
+    <string name="calendar_button">Transfer to Calendar</string>
+
+    <string name="menu_list">List</string>
+    <string name="menu_calendar">Calendar</string>
+
+
 </resources>
