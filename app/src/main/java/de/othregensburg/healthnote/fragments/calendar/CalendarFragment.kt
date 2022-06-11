@@ -7,10 +7,12 @@ import android.widget.DatePicker
 import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import de.othregensburg.healthnote.MainActivity
 import de.othregensburg.healthnote.databinding.FragmentCalendarBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,25 +47,22 @@ class CalendarFragment : Fragment() {
                     cal.set(Calendar.MINUTE, minute)
                     btnTime.text = SimpleDateFormat("HH:mm").format(cal.time)
                 }
-             /*   val dateSetListener = DatePickerDialog.OnDateSetListener { _, day,month, year ->
-                    cal.set(Calendar.DAY_OF_MONTH, day)
-                    cal.set(Calendar.MONTH, month)
-                    cal.set(Calendar.YEAR, year)
-                    btnTime.text = SimpleDateFormat("dd:MM:yyyy").format(cal.getTime())
-                }
-                DatePickerDialog(requireContext(), dateSetListener, cal.get(DAY_OF_MONTH), cal.get(Calendar.YEAR), 1).show()
-*/
+
                 TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
             }
-            btnDate.setOnClickListener {
+            /*btnDate.setOnClickListener {
                 val dateSetListener = DatePickerDialog.OnDateSetListener { _, day, month, year ->
                     cal.set(Calendar.DAY_OF_MONTH, day)
                     cal.set(Calendar.MONTH, month)
-                    cal.set(Calendar.YEAR, year)
-                    btnDate.text = SimpleDateFormat("yyyy:MM:dd").format(cal.time)
+                    //btnDate.text = SimpleDateFormat("dd:MM").format(cal.time)
+                    btnDate.text = DateUtils.formatDateTime(
+                        CalendarFragment,
+                        cal.timeInMillis,
+                        DateUtils.FORMAT_SHOW_DATE
+                    )
                 }
                 DatePickerDialog(requireContext(), dateSetListener, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH), 1).show()
-            }
+            }*/
 
 
             btnTransfer.setOnClickListener {
