@@ -56,13 +56,13 @@ class CalendarFragment : Fragment() {
                 TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
             }
             btnDate.setOnClickListener {
-                val dateSetListener = DatePickerDialog.OnDateSetListener { _, day,month, year ->
+                val dateSetListener = DatePickerDialog.OnDateSetListener { _, day, month, year ->
                     cal.set(Calendar.DAY_OF_MONTH, day)
                     cal.set(Calendar.MONTH, month)
                     cal.set(Calendar.YEAR, year)
-                    btnDate.text = SimpleDateFormat("HH:mm").format(cal.getTime())
+                    btnDate.text = SimpleDateFormat("yyyy:MM:dd").format(cal.time)
                 }
-                DatePickerDialog(requireContext(), dateSetListener, cal.get(DAY_OF_MONTH), cal.get(Calendar.YEAR), 1).show()
+                DatePickerDialog(requireContext(), dateSetListener, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH), 1).show()
             }
 
 
@@ -101,3 +101,5 @@ class CalendarFragment : Fragment() {
             _binding = null
         }
     }
+
+
