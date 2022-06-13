@@ -38,4 +38,12 @@
     <string name="authentication_btn">Authenticate</string>
     <string name="authentication_text">Click Button to authenticate</string>
     <string name="use_pin">Use pin to authenticate</string>
+
+    <string name="calendar_title">Title</string>
+    <string name="calendar_location">Location</string>
+    <string name="calendar_description">Description</string>
+    <string name="calender_datetext">Date</string>
+    <string name="calender_time">Set Time</string>
+    <string name="calender_date">Set Date</string>
+    <string name="calendar_button">Transfer to Calendar</string>
 </resources>
