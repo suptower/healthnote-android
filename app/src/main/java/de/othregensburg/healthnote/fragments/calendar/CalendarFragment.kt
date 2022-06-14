@@ -42,14 +42,6 @@ class CalendarFragment : Fragment() {
                 cal.set(Calendar.MINUTE, minute)
                 btnTime.text = SimpleDateFormat("HH:mm").format(cal.time)
             }
-            /*   val dateSetListener = DatePickerDialog.OnDateSetListener { _, day,month, year ->
-                   cal.set(Calendar.DAY_OF_MONTH, day)
-                   cal.set(Calendar.MONTH, month)
-                   cal.set(Calendar.YEAR, year)
-                   btnTime.text = SimpleDateFormat("dd:MM:yyyy").format(cal.getTime())
-               }
-               DatePickerDialog(requireContext(), dateSetListener, cal.get(DAY_OF_MONTH), cal.get(Calendar.YEAR), 1).show()
-*/
             TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
         btnDate.setOnClickListener {
@@ -57,20 +49,20 @@ class CalendarFragment : Fragment() {
                 cal.set(Calendar.DAY_OF_MONTH, day)
                 cal.set(Calendar.MONTH, month)
                 cal.set(Calendar.YEAR, year)
-                btnDate.text = SimpleDateFormat("yyyy:MM:dd").format(cal.time)
+                btnDate.text = SimpleDateFormat("dd.MM.yyyy").format(cal.time)
             }
             DatePickerDialog(requireContext(), dateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
         }
 
 
         btnTransfer.setOnClickListener {
-            addEvent(etTitle.text.toString(), etLocation.text.toString(), etDescription.text.toString(), btnTime.text.toString(), btnTime.text.toString() + 3600000)
+            addEvent(etTitle.text.toString(), etLocation.text.toString(), etDescription.text.toString(), cal.timeInMillis, cal.timeInMillis + 3600000, cal.timeInMillis)
         }
 
         return root
     }
 
-    private fun addEvent(title: String, location: String, description: String, begin: String, end: String) {
+    private fun addEvent(title: String, location: String, description: String, begin: Long, end: Long, date: Long) {
 
 
         val intent = Intent(Intent.ACTION_INSERT).apply {
@@ -80,8 +72,7 @@ class CalendarFragment : Fragment() {
             putExtra(CalendarContract.Events.DESCRIPTION, description)
             putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, begin)
             putExtra(CalendarContract.EXTRA_EVENT_END_TIME, end)
-            // TODO Implement DTSTART
-            // putExtra(CalendarContract.Events.DTSTART, <var>)
+            putExtra(CalendarContract.Events.DTSTART, date)
             type = "vnd.android.cursor.dir/event"
         }
 
