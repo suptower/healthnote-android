@@ -27,4 +27,5 @@ class MedicamentRepository(private val medicamentDao: MedicamentDao) {
     suspend fun setSeq() {
         medicamentDao.setSeq()
     }
+
 }

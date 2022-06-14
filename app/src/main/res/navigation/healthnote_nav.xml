@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/healthnote_nav"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/bioAuthFragment">
 
     <fragment
         android:id="@+id/listFragment"
         android:name="de.othregensburg.healthnote.fragments.list.ListFragment"
         android:label="List"
         tools:layout="@layout/fragment_list">
-        <!-- TODO Somehow action tag is not allowed in fragment? Solution unclear at the moment -->
         <action
             android:id="@+id/action_listFragment_to_updateFragment"
             app:destination="@id/updateFragment" />
@@ -45,5 +44,34 @@
         android:name="de.othregensburg.healthnote.fragments.calendar.CalendarFragment"
         android:label="@string/menu_calendar"
         tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="de.othregensburg.healthnote.fragments.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/pinFragment"
+        android:name="de.othregensburg.healthnote.fragments.login.PinFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_pin" >
+        <action
+            android:id="@+id/action_pinFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/bioAuthFragment"
+        android:name="de.othregensburg.healthnote.fragments.login.BioAuthFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_bio_authentication" >
+        <action
+            android:id="@+id/action_bioAuthFragment_to_pinFragment"
+            app:destination="@id/pinFragment" />
+        <action
+            android:id="@+id/action_bioAuthFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 
 </navigation>

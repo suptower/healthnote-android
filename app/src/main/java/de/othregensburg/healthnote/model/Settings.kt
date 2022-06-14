@@ -6,14 +6,11 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "med_table")
-data class Medicament(
+@Entity(tableName = "settings_table")
+data class Settings(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val name: String,
-    val time: String,
-    val form: String,
-    val dose: String,
-    val alert: Boolean,
-    val repeatSetting: String
+    val usePIN: Boolean,
+    val code: String,
+    val useBiometrics: Boolean
 ) : Parcelable
