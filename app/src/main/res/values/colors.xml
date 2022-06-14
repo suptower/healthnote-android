@@ -10,4 +10,5 @@
     <color name="healthNote_orange">#DB605c</color>
     <color name="healthNote_pink">#e54c80</color>
     <color name="healthNote_grey">#fedee0</color>
+    <color name="critical">#F44336</color>
 </resources>

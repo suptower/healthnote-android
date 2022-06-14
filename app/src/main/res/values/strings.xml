@@ -25,7 +25,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_list">List</string>
+    <string name="menu_list">Medicaments</string>
     <string name="menu_calendar">Calendar</string>
     <string name="menu_settings">Settings</string>
     <string name="protPin">Protection PIN</string>
@@ -46,4 +46,5 @@
     <string name="calender_time">Set Time</string>
     <string name="calender_date">Set Date</string>
     <string name="calendar_button">Transfer to Calendar</string>
+    <string name="deleteAllMeds">Delete all Medicaments</string>
 </resources>
