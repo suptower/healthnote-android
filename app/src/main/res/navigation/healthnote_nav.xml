@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="de.othregensburg.healthnote.fragments.list.ListFragment"
-        android:label="List"
+        android:label="Medicaments"
         tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_updateFragment"

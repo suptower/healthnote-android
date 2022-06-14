@@ -15,10 +15,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import de.othregensburg.healthnote.databinding.FragmentSettingsBinding
 import de.othregensburg.healthnote.model.Settings
+import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import de.othregensburg.healthnote.viewmodel.SettingsViewModel
 
 class SettingsFragment : Fragment() {
     private lateinit var svmodel: SettingsViewModel
+    private lateinit var mMedViewModel: MedicamentViewModel
     private lateinit var settingsData: List<Settings>
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -28,6 +30,7 @@ class SettingsFragment : Fragment() {
     ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val view = binding.root
+        mMedViewModel = ViewModelProvider(this)[MedicamentViewModel::class.java]
         svmodel = ViewModelProvider(this)[SettingsViewModel::class.java]
 
         svmodel.readAllData.observe(viewLifecycleOwner) { settings ->
@@ -104,6 +107,18 @@ class SettingsFragment : Fragment() {
                 dialog.cancel()
             }
             builder.show()
+        }
+
+        binding.deleteMedicaments.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setPositiveButton("Yes") {_, _ ->
+                mMedViewModel.deleteAllMeds()
+                Toast.makeText(requireContext(), "Successfully removed everything", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No") {_, _ -> }
+            builder.setTitle("Delete everything?")
+            builder.setMessage("Are you sure you want to delete everything?")
+            builder.create().show()
         }
 
         return view
