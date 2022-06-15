@@ -44,9 +44,6 @@ class ListFragment : Fragment() {
         // Cancel all alerts and then reschedule them so there are no double or triple executions etc.
         mMedViewModel.readAllData.observe(viewLifecycleOwner) { meds ->
             adapter.setData(meds)
-            val mainAct = activity as MainActivity
-            mainAct.cancelAlerts()
-            mainAct.scheduleAlerts(meds)
         }
         // Prepare settings
         svmodel = ViewModelProvider(this)[SettingsViewModel::class.java]

@@ -1,14 +1,8 @@
 package de.othregensburg.healthnote
 
-import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -19,10 +13,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import de.othregensburg.healthnote.databinding.ActivityMainBinding
-import de.othregensburg.healthnote.model.Medicament
 import de.othregensburg.healthnote.model.Settings
 import de.othregensburg.healthnote.viewmodel.SettingsViewModel
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,44 +45,6 @@ class MainActivity : AppCompatActivity() {
 
 
         createNotificationChannel()
-    }
-
-    fun scheduleAlerts(medList: List<Medicament>) {
-        val tag = "scheduleAlerts"
-        // Debug: Check Amount of elements in given medList
-        Log.d(tag, "medList has ${medList.size} elements")
-        for (med in medList.listIterator()) {
-            if (med.alert) {
-                // Set Alert according to data of med
-                val alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                val alarmIntent = Intent(this, AlarmReceiver::class.java)
-                alarmIntent.putExtra("MED_ID", med.id)
-                alarmIntent.putExtra("MED_NAME", med.name)
-                val pendingIntent = PendingIntent.getBroadcast(this, med.id, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
-                val cal = Calendar.getInstance()
-                val hour = med.time.substring(0,2).toInt()
-                val min = med.time.substring(3,5).toInt()
-                cal.set(Calendar.HOUR_OF_DAY, hour)
-                cal.set(Calendar.MINUTE, min)
-                cal.set(Calendar.SECOND, 0)
-                val repeatArr = resources.getStringArray(R.array.repeat_array)
-                if (med.repeatSetting == repeatArr[0]) {
-                    // Daily
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 86400000, pendingIntent)
-                }
-                else {
-                    // Weekly
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 604800000, pendingIntent)
-                }
-            }
-        }
-    }
-
-    fun cancelAlerts() {
-        // Cancel all alerts
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.cancel(PendingIntent.getBroadcast(this, 0, Intent(this, AlarmReceiver::class.java), PendingIntent.FLAG_IMMUTABLE))
-        Log.d("cancelAlerts", "Alerts cancelled")
     }
 
     private fun createNotificationChannel() {

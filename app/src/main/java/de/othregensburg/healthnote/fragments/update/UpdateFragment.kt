@@ -1,7 +1,11 @@
 package de.othregensburg.healthnote.fragments.update
 
+import android.app.AlarmManager
 import android.app.AlertDialog
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
@@ -13,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import de.othregensburg.healthnote.AlarmReceiver
 import de.othregensburg.healthnote.R
 import de.othregensburg.healthnote.databinding.FragmentUpdateBinding
 import de.othregensburg.healthnote.model.Medicament
@@ -81,6 +86,37 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if (inputCheck(name, form, dose, time)) {
             val med = Medicament(args.currentMed.id, name, time, form, dose, alertBoolean, repeatInterval)
             mMedicamentViewModel.updateMed(med)
+            if (args.currentMed.alert) {
+                val alarmIntent = Intent(requireContext(), AlarmReceiver::class.java)
+                alarmIntent.putExtra("MED_ID", args.currentMed.id)
+                alarmIntent.putExtra("MED_NAME", args.currentMed.name)
+                val pendingIntent = PendingIntent.getBroadcast(requireContext(), args.currentMed.id, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
+                val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                alarmManager.cancel(pendingIntent)
+            }
+            if (med.alert) {
+                // Schedule alert
+                val alarmManager : AlarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                val alarmIntent = Intent(requireContext(), AlarmReceiver::class.java)
+                alarmIntent.putExtra("MED_ID", med.id)
+                alarmIntent.putExtra("MED_NAME", med.name)
+                val pendingIntent = PendingIntent.getBroadcast(requireContext(), med.id, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
+                val cal = Calendar.getInstance()
+                val hour = med.time.substring(0,2).toInt()
+                val min = med.time.substring(3,5).toInt()
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, min)
+                cal.set(Calendar.SECOND, 0)
+                val repeatArr = resources.getStringArray(R.array.repeat_array)
+                if (med.repeatSetting == repeatArr[0]) {
+                    // Daily
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 86400000, pendingIntent)
+                }
+                else {
+                    // Weekly
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 604800000, pendingIntent)
+                }
+            }
             Toast.makeText(requireContext(),"Updated successfully", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
@@ -113,6 +149,12 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") {_, _ ->
             mMedicamentViewModel.deleteMed(args.currentMed)
+            val alarmIntent = Intent(requireContext(), AlarmReceiver::class.java)
+            alarmIntent.putExtra("MED_ID", args.currentMed.id)
+            alarmIntent.putExtra("MED_NAME", args.currentMed.name)
+            val pendingIntent = PendingIntent.getBroadcast(requireContext(), args.currentMed.id, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
+            val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(pendingIntent)
             Toast.makeText(requireContext(), "Successfully removed: ${args.currentMed.name}", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
