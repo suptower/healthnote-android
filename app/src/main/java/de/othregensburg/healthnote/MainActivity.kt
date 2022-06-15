@@ -77,14 +77,10 @@ class MainActivity : AppCompatActivity() {
                 if (med.repeatSetting == repeatArr[0]) {
                     // Daily
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 86400000, pendingIntent)
-                    val toastText = "Successfully scheduled daily alert at $hour:$min"
-                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
                 }
                 else {
                     // Weekly
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 604800000, pendingIntent)
-                    val toastText = "Successfully scheduled weekly alert at $hour:$min"
-                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
                 }
             }
         }
