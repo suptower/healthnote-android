@@ -1,6 +1,10 @@
 package de.othregensburg.healthnote.fragments.settings
 
+import android.app.AlarmManager
 import android.app.AlertDialog
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.InputType
@@ -13,7 +17,10 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import de.othregensburg.healthnote.AlarmReceiver
+import de.othregensburg.healthnote.MainActivity
 import de.othregensburg.healthnote.databinding.FragmentSettingsBinding
+import de.othregensburg.healthnote.model.Medicament
 import de.othregensburg.healthnote.model.Settings
 import de.othregensburg.healthnote.viewmodel.MedicamentViewModel
 import de.othregensburg.healthnote.viewmodel.SettingsViewModel
@@ -113,6 +120,9 @@ class SettingsFragment : Fragment() {
             val builder = AlertDialog.Builder(requireContext())
             builder.setPositiveButton("Yes") {_, _ ->
                 mMedViewModel.deleteAllMeds()
+                mMedViewModel.readAllData.observe(viewLifecycleOwner) { meds ->
+                    cancelAlerts(meds)
+                }
                 Toast.makeText(requireContext(), "Successfully removed everything", Toast.LENGTH_SHORT).show()
             }
             builder.setNegativeButton("No") {_, _ -> }
@@ -122,6 +132,21 @@ class SettingsFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun cancelAlerts(meds: List<Medicament>?) {
+        if (meds != null) {
+            for (med in meds) {
+                if (med.alert) {
+                    val alarmIntent = Intent(requireContext(), AlarmReceiver::class.java)
+                    alarmIntent.putExtra("MED_ID", med.id)
+                    alarmIntent.putExtra("MED_NAME", med.name)
+                    val pendingIntent = PendingIntent.getBroadcast(requireContext(), med.id, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
+                    val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    alarmManager.cancel(pendingIntent)
+                }
+            }
+        }
     }
 
 }

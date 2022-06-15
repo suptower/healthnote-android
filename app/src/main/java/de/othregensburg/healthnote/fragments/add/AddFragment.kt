@@ -1,9 +1,16 @@
 package de.othregensburg.healthnote.fragments.add
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -11,6 +18,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import de.othregensburg.healthnote.AlarmReceiver
 import de.othregensburg.healthnote.R
 import de.othregensburg.healthnote.databinding.FragmentAddBinding
 import de.othregensburg.healthnote.model.Medicament
@@ -71,6 +79,30 @@ class AddFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if (inputCheck(name, form, dose, time)) {
             val med = Medicament(0, name, time, form, dose, alertBoolean, repeatInterval)
             mMedViewModel.addMed(med)
+            if (med.alert) {
+                // Schedule alert
+                val alarmManager : AlarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                val alarmIntent = Intent(requireContext(), AlarmReceiver::class.java)
+                alarmIntent.putExtra("MED_ID", med.id)
+                alarmIntent.putExtra("MED_NAME", med.name)
+                val pendingIntent = PendingIntent.getBroadcast(requireContext(), med.id, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
+                val cal = Calendar.getInstance()
+                val hour = med.time.substring(0,2).toInt()
+                val min = med.time.substring(3,5).toInt()
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, min)
+                cal.set(Calendar.SECOND, 0)
+                val repeatArr = resources.getStringArray(R.array.repeat_array)
+                if (med.repeatSetting == repeatArr[0]) {
+                    // Daily
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 86400000, pendingIntent)
+                }
+                else {
+                    // Weekly
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, 604800000, pendingIntent)
+                }
+            }
+
             Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
         } else {
