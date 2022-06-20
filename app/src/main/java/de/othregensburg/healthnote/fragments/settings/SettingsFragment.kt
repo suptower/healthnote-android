@@ -3,9 +3,11 @@ package de.othregensburg.healthnote.fragments.settings
 import android.app.AlarmManager
 import android.app.AlertDialog
 import android.app.PendingIntent
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.view.Gravity
@@ -18,7 +20,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import de.othregensburg.healthnote.AlarmReceiver
-import de.othregensburg.healthnote.MainActivity
 import de.othregensburg.healthnote.databinding.FragmentSettingsBinding
 import de.othregensburg.healthnote.model.Medicament
 import de.othregensburg.healthnote.model.Settings
@@ -129,6 +130,19 @@ class SettingsFragment : Fragment() {
             builder.setTitle("Delete everything?")
             builder.setMessage("Are you sure you want to delete everything?")
             builder.create().show()
+        }
+
+        binding.contactDevs.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            val addresses = arrayOf("arda.koecer@st.oth-regensburg.de", "simon.huber@st.oth-regensburg.de", "jakob.binner@st.oth-regensburg.de")
+            intent.data = Uri.parse("mailto:")
+            intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Question regarding HealthNote application")
+            try {
+                startActivity(intent)
+            } catch (ex: ActivityNotFoundException) {
+                Toast.makeText(requireContext(), "Application not found", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view
