@@ -47,4 +47,5 @@
     <string name="calender_date">Set Date</string>
     <string name="calendar_button">Transfer to Calendar</string>
     <string name="deleteAllMeds">Delete all Medicaments</string>
+    <string name="contactDevs">Contact developers</string>
 </resources>

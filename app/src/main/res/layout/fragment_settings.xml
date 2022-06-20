@@ -9,46 +9,63 @@
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/enablePIN"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
         android:text="@string/protPin"
         android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/changePIN"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/changePin"
+        android:gravity="center_vertical"
         android:textSize="16sp"
         android:textColor="@color/black"/>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/enableBiometrics"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/enableBiometrics"
+        android:gravity="center_vertical"
         android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/deleteMedicaments"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/deleteAllMeds"
+        android:gravity="center_vertical"
         android:textSize="16sp"
         android:textColor="@color/critical"/>
+
+    <TextView
+        android:id="@+id/contactDevs"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/contactDevs"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
 </LinearLayout>
