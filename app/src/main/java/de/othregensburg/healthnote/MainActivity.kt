@@ -80,4 +80,5 @@ class MainActivity : AppCompatActivity() {
             svmodel.addSetting(set)
         }
     }
+
 }

@@ -48,4 +48,11 @@
     <string name="calendar_button">Transfer to Calendar</string>
     <string name="deleteAllMeds">Delete all Medicaments</string>
     <string name="contactDevs">Contact developers</string>
+
+    <string name="addPhoto">add Photo</string>
+    <string name="changePhoto">change Photo</string>
+
+    <string name="medPhotoDes">medication Photo</string>
+
+
 </resources>
