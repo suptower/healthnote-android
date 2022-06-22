@@ -3,7 +3,7 @@
     <gradient
         android:angle="45"
         android:useLevel="false"
-        android:endColor="@color/healthNote_orange"
+        android:endColor="@color/healthNote_red"
         android:startColor="@color/healthNote_pink"
         android:type="linear" />
 </shape>

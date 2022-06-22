@@ -98,14 +98,18 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
             updateItem()
         }
 
-
-        // Set up the listeners for take photo and video capture buttons
-        binding.takeMedPhotoBtn.setOnClickListener { takePhoto() }
-
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         val medPhotoUri : Uri = Uri.parse(args.currentMed.photoUri)
         binding.medPhoto.setImageURI(medPhotoUri)
+
+        // Set up the listeners for take photo and video capture buttons
+        binding.takeMedPhotoBtn.setOnClickListener {
+            if(args.currentMed.photoUri != "null")
+                context?.contentResolver?.delete(medPhotoUri,savedInstanceState)
+
+            takePhoto()
+        }
 
         binding.changeMedPhotoBtn.setOnClickListener {
             // Request camera permissions
@@ -117,9 +121,7 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 )
             }
 
-            if(args.currentMed.photoUri != "null")
-                context?.contentResolver?.delete(medPhotoUri,savedInstanceState)
-        }
+            }
 
 
         binding.changeMedPhotoBtn.visibility = View.VISIBLE

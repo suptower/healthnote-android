@@ -3,10 +3,10 @@
     <style name="Theme.HealthNote" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/healthNote_pink</item>
-        <item name="colorPrimaryVariant">@color/healthNote_orange</item>
+        <item name="colorPrimaryVariant">@color/healthNote_red</item>
         <item name="colorOnPrimary">@color/healthNote_grey</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/healthNote_orange</item>
+        <item name="colorSecondary">@color/healthNote_red</item>
         <item name="colorSecondaryVariant">@color/healthNote_pink</item>
         <item name="colorOnSecondary">@color/healthNote_grey</item>
         <!-- Status bar color. -->
