@@ -18,6 +18,7 @@
             android:textColorHint="#757575"
             app:layout_constraintBottom_toTopOf="@+id/editTextTime"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addMedicineForm" />
 
@@ -41,6 +42,7 @@
             android:textColorHint="#757575"
             app:layout_constraintBottom_toTopOf="@+id/addMedicineForm"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.875"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,6 +58,7 @@
             android:textColorHint="#757575"
             app:layout_constraintBottom_toTopOf="@+id/addMedicineDose"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addMedicineName" />
 
@@ -134,6 +137,64 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/editTextTime"
             app:layout_constraintTop_toBottomOf="@+id/fireAlertSwitch" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/takeMedPhotoBtn"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/healthNote_pink"
+            android:contentDescription="@string/checkmark"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addMedicineForm"
+            app:layout_constraintHorizontal_bias="0.426"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.355" />
+
+        <Button
+            android:id="@+id/addMedPhotoBtn"
+            android:layout_width="149dp"
+            android:layout_height="41dp"
+            android:ems="10"
+
+            android:text="@string/addPhoto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addMedicineForm"
+            app:layout_constraintHorizontal_bias="0.172"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.355"
+            tools:ignore="TextContrastCheck" />
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="148dp"
+            android:layout_height="208dp"
+
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/takeMedPhotoBtn"
+            app:layout_constraintEnd_toStartOf="@+id/addMedicineName"
+            app:layout_constraintHorizontal_bias="0.206"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.066"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/medPhoto"
+            android:layout_width="148dp"
+            android:layout_height="208dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/takeMedPhotoBtn"
+            app:layout_constraintEnd_toStartOf="@+id/addMedicineName"
+            app:layout_constraintHorizontal_bias="0.206"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.066"
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/medPhotoDes" />
 
 
 
