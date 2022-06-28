@@ -91,6 +91,19 @@ class UpdateFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(requireContext(), R.array.repeat_array, android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
+            // Select the previously selected interval from currentMed
+            // Check if the current med interval is daily or weekly
+            val repeatArr = resources.getStringArray(R.array.repeat_array)
+            if (args.currentMed.repeatSetting == repeatArr[0]) {
+                // Daily
+                // Set selection to position 0 (daily)
+                spinner.setSelection(0);
+            }
+            else {
+                // Weekly
+                // Set selection to position 1 (weekly)
+                spinner.setSelection(1);
+            }
         }
         spinner.onItemSelectedListener = this
 
